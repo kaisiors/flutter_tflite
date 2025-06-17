@@ -29,6 +29,9 @@ android {
         minSdk = 21
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
+    kotlinOptions {
+        jvmTarget = rootProject.ext.has('kotlin_jvm_target') ? rootProject.ext.kotlin_jvm_target : "1.8"
+    }
     lintOptions {
         disable 'InvalidPackage'
     }
@@ -36,5 +39,11 @@ android {
     dependencies {
         implementation 'org.tensorflow:tensorflow-lite:2.4.0'
         implementation 'org.tensorflow:tensorflow-lite-gpu:2.4.0'
+    }
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }
